@@ -1,12 +1,21 @@
-CREATE TABLE item_ventas
+CREATE TABLE ventas
 (numero_factura INT NOT NULL,
-codigo_producto INT NOT NULL,
-cantidad INT,
-precio INT,
-PRIMARY KEY (codigo_producto),
-FOREIGN KEY (codigo_producto) REFERENCES productos
-(pnro));
+codigo_cliente INT NOT NULL,
+fecha DATE,
+PRIMARY KEY (numero_factura, codigo_cliente),
+FOREIGN KEY (numero_factura) REFERENCES item_ventas
+(numero_factura),
+FOREIGN KEY (codigo_cliente) REFERENCES clientes
+(codigo_cliente));
 
+
+CREATE TABLE `item_ventas` (
+  `numero_factura` int NOT NULL,
+  `codigo_producto` int NOT NULL,
+  `cantidad` int DEFAULT NULL,
+  `precio` int DEFAULT NULL,
+  PRIMARY KEY (`numero_factura`, `codigo_producto`), FOREIGN KEY (`codigo_producto`) REFERENCES `productos` (`PNRO`)
+) 
 
 CREATE TABLE PRODUCTOS
 (PNRO INT NOT NULL,
